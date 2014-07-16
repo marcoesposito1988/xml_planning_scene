@@ -1,0 +1,3 @@
+<launch>
+  <node name="planning_scene_publisher" pkg="xml_planning_scene" type="publisher.py" args="$(find xml_planning_scene)/data/example.scene"/>
+</launch>

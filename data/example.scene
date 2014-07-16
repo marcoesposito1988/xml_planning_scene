@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scene 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="scene.xsd">
+	
+	<object id="primitives" frame_id="world">
+		<box box_x="0.5" box_y="0.4" box_z="0.3">
+			<pose>
+				<position x="1" y="2" z="0" />
+				<orientation x="0" y="0" z="0" w="1" />
+			</pose>
+		</box>
+		
+		<cylinder cylinder_height="1" cylinder_radius="0.3">
+			<pose>
+				<position x="5" y="1" z="2" />
+				<orientation x="0" y="0" z="0" w="1" />
+			</pose>
+		</cylinder>	
+		
+		<sphere sphere_radius="1" >
+			<pose>
+				<position x="2" y="8" z="3" />
+				<orientation x="0" y="0" z="0" w="1" />
+			</pose>
+		</sphere>	
+		
+		<cone cone_height="1" cone_radius="0.4">
+			<pose>
+				<position x="-5" y="2" z="0" />
+				<orientation x="0" y="0.707" z="0" w="0.707" />
+			</pose>
+		</cone>	
+	</object>
+	
+	<object id="plane_and_mesh" frame_id="map">
+		<plane a="1" b="2" c="3" d="4">
+			<pose>
+				<position x="1" y="2" z="-4" />
+				<orientation x="0" y="0" z="0" w="1" />
+			</pose>
+		</plane>
+		
+		<!-- <mesh url="url/of/mesh/file">
+			<pose>
+				<position x="1" y="2" z="3" />
+				<orientation x="1" y="2" z="3" w="4" />
+			</pose>
+		</mesh> -->
+	</object>
+
+</scene>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:complexType name="positionType">
+	<xs:attribute name="x" type="xs:float" />
+	<xs:attribute name="y" type="xs:float" />
+	<xs:attribute name="z" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="orientationType">
+	<xs:attribute name="x" type="xs:float" />
+	<xs:attribute name="y" type="xs:float" />
+	<xs:attribute name="z" type="xs:float" />
+	<xs:attribute name="w" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="poseType">
+	<xs:sequence>
+		<xs:element name="position" type="positionType" />
+		<xs:element name="orientation" type="orientationType" />
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="meshType">
+	<xs:sequence>
+		<xs:element name="pose" type="poseType"/>
+	</xs:sequence>
+	<xs:attribute name="url" type="xs:anyURI" />
+</xs:complexType>
+
+<xs:complexType name="planeType">
+	<xs:sequence>
+		<xs:element name="pose" type="poseType"/>
+	</xs:sequence>
+	<xs:attribute name="a" type="xs:float" />
+	<xs:attribute name="b" type="xs:float" />
+	<xs:attribute name="c" type="xs:float" />
+	<xs:attribute name="d" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="boxType">
+	<xs:sequence>
+		<xs:element name="pose" type="poseType"/>
+	</xs:sequence>
+	<xs:attribute name="box_x" type="xs:float" />
+	<xs:attribute name="box_y" type="xs:float" />
+	<xs:attribute name="box_z" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="sphereType">
+	<xs:sequence>
+		<xs:element name="pose" type="poseType"/>
+	</xs:sequence>
+	<xs:attribute name="sphere_radius" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="cylinderType">
+	<xs:sequence>
+		<xs:element name="pose" type="poseType"/>
+	</xs:sequence>
+	<xs:attribute name="cylinder_height" type="xs:float" />
+	<xs:attribute name="cylinder_radius" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="coneType">
+	<xs:sequence>
+		<xs:element name="pose" type="poseType"/>
+	</xs:sequence>
+	<xs:attribute name="cone_height" type="xs:float" />
+	<xs:attribute name="cone_radius" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="objectType">
+	<xs:all>
+		<xs:element name="sphere" 		type="sphereType" 		minOccurs="0" />
+        <xs:element name="box" 			type="boxType" 			minOccurs="0" />
+        <xs:element name="cone" 		type="coneType" 		minOccurs="0" />
+        <xs:element name="cylinder" 	type="cylinderType" 	minOccurs="0" />
+        
+        <xs:element name="plane" type="planeType" minOccurs="0" />
+        
+        <xs:element name="mesh" type="meshType" minOccurs="0" />
+	</xs:all>
+	<xs:attribute name="id" type="xs:string" />
+	<xs:attribute name="frame_id" type="xs:string" />
+</xs:complexType>
+
+<xs:element name="scene">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="object" 	type="objectType" 	minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
