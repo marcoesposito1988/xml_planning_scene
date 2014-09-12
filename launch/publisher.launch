@@ -1,3 +1,5 @@
 <launch>
-  <node name="planning_scene_publisher" pkg="xml_planning_scene" type="publisher.py" args="$(find xml_planning_scene)/data/example.scene"/>
+  <arg name="file" default="$(find xml_planning_scene)/data/example.scene" />
+  <arg name="frequency" default="0" />
+  <node name="planning_scene_publisher" pkg="xml_planning_scene" type="publisher.py" args="$(arg file) $(arg frequency)"/>
 </launch>
