@@ -7,7 +7,13 @@
 	<xs:attribute name="z" type="xs:float" />
 </xs:complexType>
 
-<xs:complexType name="orientationType">
+<xs:complexType name="eulerType">
+	<xs:attribute name="x" type="xs:float" />
+	<xs:attribute name="y" type="xs:float" />
+	<xs:attribute name="z" type="xs:float" />
+</xs:complexType>
+
+<xs:complexType name="quaternionType">
 	<xs:attribute name="x" type="xs:float" />
 	<xs:attribute name="y" type="xs:float" />
 	<xs:attribute name="z" type="xs:float" />
@@ -17,7 +23,10 @@
 <xs:complexType name="poseType">
 	<xs:sequence>
 		<xs:element name="position" type="positionType" />
-		<xs:element name="orientation" type="orientationType" />
+		<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element name="quaternion" type="quaternionType" />
+			<xs:element name="euler" type="eulerType" />
+		</xs:choice>
 	</xs:sequence>
 </xs:complexType>
 
@@ -76,9 +85,9 @@
         <xs:element name="box" 			type="boxType" 			minOccurs="0" />
         <xs:element name="cone" 		type="coneType" 		minOccurs="0" />
         <xs:element name="cylinder" 	type="cylinderType" 	minOccurs="0" />
-        
+
         <xs:element name="plane" type="planeType" minOccurs="0" />
-        
+
         <xs:element name="mesh" type="meshType" minOccurs="0" />
 	</xs:all>
 	<xs:attribute name="id" type="xs:string" />

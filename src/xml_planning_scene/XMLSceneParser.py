@@ -9,6 +9,7 @@ from moveit_msgs.msg import PlanningSceneWorld,CollisionObject
 from shape_msgs.msg import SolidPrimitive,Plane,Mesh
 from geometry_msgs.msg import Pose,Point,Quaternion
 from std_msgs.msg import Header
+from tf import transformations as tfs
 import rospy
 import rospkg
 from lxml import etree
@@ -185,11 +186,16 @@ class XMLSceneParser(object):
     
     @staticmethod
     def handle_orientation(node):
-        if node.tag != 'orientation':
+        if node.tag not in ('quaternion','euler'):
             raise ValueError
         
         v = node.attrib
-        return Quaternion(float(v['x']),float(v['y']),float(v['z']),float(v['w']))
+        if node.tag == 'quaternion':
+            return Quaternion(float(v['x']),float(v['y']),float(v['z']),float(v['w']))
+        if node.tag == 'euler':
+            ex, ey, ez = float(v['x']),float(v['y']),float(v['z'])
+            q = tfs.quaternion_from_euler(ex, ey, ez)
+            return Quaternion(*q)
         
 if __name__ == '__main__':
     examples_dir = '../data'
